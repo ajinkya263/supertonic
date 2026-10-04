@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Supertonic! — Santa Clara University's Premier A Cappella Group</title>
+  <meta name="description" content="Supertonic! is Santa Clara University's oldest contemporary all-gender a cappella group. Founded in 2007." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fredoka:wght@600;700&family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <canvas id="notes-canvas" aria-hidden="true"></canvas>
+
+  <!-- ===================== NAV ===================== -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#home" class="brand brand--img" aria-label="Supertonic! home">
+        <img src="assets/supertonic-logo.png" alt="Supertonic!" class="brand__png" />
+      </a>
+      <nav class="nav__links" id="nav-links" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#members">Members</a>
+        <a href="#showcase">Showcase</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#alumni">Alumni</a>
+        <a href="#contact" class="nav__cta">Contact</a>
+      </nav>
+      <button class="nav__toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" id="home">
+      <div class="hero__left">
+        <div class="hero__notes" aria-hidden="true">
+          <span class="fnote fnote--1">♪</span><span class="fnote fnote--2">♫</span><span class="fnote fnote--3">♩</span>
+        </div>
+        <div class="hero__intro">
+          <p class="hero__hi reveal">Hi, we are</p>
+          <h1 class="hero__title"><span class="hero__title-mark">Supertonic</span><span class="hero__bang">!</span></h1>
+          <p class="hero__subtitle reveal">Santa Clara University's Premier A Cappella Group</p>
+          <div class="hero__socials reveal" aria-label="Social links">
+            <a href="https://www.instagram.com/scsupertonic/" class="social" target="_blank" rel="noopener" aria-label="Instagram @scsupertonic" title="@scsupertonic">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.86s0 3.6-.07 4.86c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.9.07s-3.6 0-4.86-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.21 15.6 2.2 15.2 2.2 12s0-3.6.07-4.86c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.46 2.21 8.84 2.2 12 2.2Zm0 10.8A4.94 4.94 0 1 0 7.06 12 4.94 4.94 0 0 0 12 13Zm0-1.8A3.14 3.14 0 1 1 15.14 12 3.14 3.14 0 0 1 12 11.2Zm5.14-5A1.15 1.15 0 1 1 16 6.35a1.15 1.15 0 0 1 1.14-1.15Z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/scsupertonic/" class="social-handle" target="_blank" rel="noopener">@scsupertonic</a>
+          </div>
+          <a href="#about" class="hero__scroll reveal" aria-label="Scroll to explore">
+            <span>Explore</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16a1 1 0 0 1-.7-.3l-6-6a1 1 0 1 1 1.4-1.4l5.3 5.29 5.3-5.3a1 1 0 0 1 1.4 1.42l-6 6a1 1 0 0 1-.7.29Z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="hero__right">
+        <img class="hero__photo" src="assets/hero.jpg" alt="Supertonic! — the group" loading="eager" />
+        <div class="hero__photo-overlay" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT ===================== -->
+    <section class="section about" id="about">
+      <div class="container">
+        <p class="eyebrow reveal">About Us</p>
+        <h2 class="section__title split">One big family that happens to sing.</h2>
+        <div class="about__grid">
+          <div class="about__col">
+            <p class="reveal">Founded in 2007, <strong>Supertonic!</strong> is Santa Clara University's oldest contemporary all-gender a cappella group. For nearly 20 years, the Tonics have brought together students who love making music, performing, and — most importantly — making memories together.</p>
+            <p class="reveal">From delicate harmonies and intricate arrangements to powerful solos and everything in between, we're always looking to transform a song into something unique. Our repertoire spans timeless classics to today's biggest pop hits.</p>
+          </div>
+          <div class="about__col">
+            <p class="reveal">Believe it or not, the most meaningful part of being a Tonic isn't the performances! From beach retreats to early-morning cold plunges, sunset hangouts, and spontaneous adventures, we're a close-knit family who push each other to be better singers and better people.</p>
+            <p class="reveal">We've performed well beyond campus — at Music at Noon, Relay for Life, LoveJones, for University presidents, and even at the Golden Circle fundraiser alongside Train and Lionel Richie.</p>
+          </div>
+        </div>
+        <div class="about__photos" aria-hidden="true">
+          <img class="pop" src="assets/gallery/photo-04.jpg" alt="" loading="lazy" />
+          <img class="pop" src="assets/gallery/photo-15.jpg" alt="" loading="lazy" />
+          <img class="pop" src="assets/gallery/photo-20.jpg" alt="" loading="lazy" />
+          <img class="pop" src="assets/gallery/photo-26.jpg" alt="" loading="lazy" />
+        </div>
+        <div class="stats reveal">
+          <div class="stat"><span class="stat__num">2007</span><span class="stat__label">Founded</span></div>
+          <div class="stat"><span class="stat__num" data-count="20">0</span><span class="stat__label">Years strong</span></div>
+          <div class="stat"><span class="stat__num" data-count="9">0</span><span class="stat__label">Current Tonics</span></div>
+          <div class="stat"><span class="stat__num">∞</span><span class="stat__label">Memories made</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== VIBE BAND ===================== -->
+    <section class="vibe" id="vibe" aria-label="Supertonic in motion">
+      <video class="vibe__video" src="assets/vibe.mp4" poster="assets/vibe-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+      <div class="vibe__scrim" aria-hidden="true"></div>
+      <div class="vibe__inner">
+        <p class="vibe__kicker reveal">Est. 2007 · Santa Clara University</p>
+        <h2 class="vibe__title split">Nearly 20 years of harmony.</h2>
+      </div>
+    </section>
+
+    <!-- ===================== MEMBERS (accordion) ===================== -->
+    <section class="section members" id="members">
+      <div class="container">
+        <p class="eyebrow reveal">Meet the Group</p>
+        <h2 class="section__title split">The 2026–2027 Tonics</h2>
+        <p class="section__lead reveal">Hover a panel (or tap on mobile) to meet each Tonic.</p>
+      </div>
+      <div class="accordion" id="members-accordion" role="list"></div>
+    </section>
+
+    <!-- ===================== SHOWCASE ===================== -->
+    <section class="section showcase" id="showcase">
+      <div class="container">
+        <p class="eyebrow reveal">Our Spring Tradition</p>
+        <h2 class="section__title split">The Annual Showcase</h2>
+        <div class="showcase__grid">
+          <div class="showcase__text">
+            <p class="reveal">Each spring, Supertonic! closes out the year with our <strong>Showcase</strong> — a beloved end-of-year tradition in SCU's Music Recital Hall, always <strong>free admission</strong>. It's where we perform everything we've learned across the season and spotlight the individual talents of every member through solos and duets.</p>
+            <p class="reveal">The night is built around our graduating seniors: in <strong>Act II</strong>, the group performs each senior's hand-picked <em>"Senior Song"</em> — a send-off for the Tonics moving on. Our most recent was the <strong>19th Annual Showcase</strong>, and we can't wait for the next.</p>
+            <div class="showcase__cards">
+              <div class="scard pop"><span class="scard__k">Act I</span><span class="scard__v">The season's songs</span></div>
+              <div class="scard pop"><span class="scard__k">Act II</span><span class="scard__v">Senior Songs</span></div>
+              <div class="scard pop"><span class="scard__k">Where</span><span class="scard__v">Music Recital Hall</span></div>
+              <div class="scard pop"><span class="scard__k">Admission</span><span class="scard__v">Always free</span></div>
+            </div>
+            <a href="https://www.instagram.com/scsupertonic/" target="_blank" rel="noopener" class="btn btn--solid reveal">Catch the next show →</a>
+          </div>
+          <div class="showcase__collage">
+            <img class="pop" src="assets/gallery/photo-05.jpg" alt="Supertonic! showcase performance" loading="lazy" />
+            <img class="pop" src="assets/gallery/photo-09.jpg" alt="Supertonic! on stage" loading="lazy" />
+            <img class="pop" src="assets/gallery/photo-23.jpg" alt="Supertonic! showcase" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== GALLERY (carousel) ===================== -->
+    <section class="section gallery" id="gallery">
+      <div class="container">
+        <p class="eyebrow reveal">Gallery</p>
+        <h2 class="section__title split">Life as a Tonic</h2>
+        <p class="section__lead reveal">Swipe, drag, or use the arrows.</p>
+      </div>
+      <div class="carousel reveal" id="carousel">
+        <button class="carousel__arrow carousel__arrow--prev" id="car-prev" aria-label="Previous photo">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="carousel__track" id="carousel-track"></div>
+        <button class="carousel__arrow carousel__arrow--next" id="car-next" aria-label="Next photo">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <div class="carousel__dots" id="carousel-dots" aria-hidden="true"></div>
+    </section>
+
+    <!-- ===================== ALUMNI ===================== -->
+    <section class="section alumni" id="alumni">
+      <div class="container">
+        <p class="eyebrow reveal">Where it continues</p>
+        <h2 class="section__title split">Alumni · Class of 2026</h2>
+        <p class="section__lead reveal">The graduating Tonics who left the stage a little warmer. Once a Tonic, always a Tonic.</p>
+        <div class="alumni__grid" id="alumni-grid"></div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section class="section contact" id="contact">
+      <div class="container contact__inner">
+        <div class="contact__info">
+          <p class="eyebrow reveal">Get in touch</p>
+          <h2 class="section__title split">Book us. Audition. Say hi.</h2>
+          <p class="reveal">The fastest way to reach us is a DM on Instagram — we'd love to bring live a cappella to your event, or tell you about auditions.</p>
+          <a class="btn btn--ig reveal" href="https://www.instagram.com/scsupertonic/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.86s0 3.6-.07 4.86c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.9.07s-3.6 0-4.86-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.21 15.6 2.2 15.2 2.2 12s0-3.6.07-4.86c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.46 2.21 8.84 2.2 12 2.2Zm0 10.8A4.94 4.94 0 1 0 7.06 12 4.94 4.94 0 0 0 12 13Zm0-1.8A3.14 3.14 0 1 1 15.14 12 3.14 3.14 0 0 1 12 11.2Z"/></svg>
+            DM @scsupertonic
+          </a>
+          <p class="contact__email reveal">Prefer email? <a href="mailto:scsupertonic@gmail.com">scsupertonic@gmail.com</a></p>
+        </div>
+        <form class="contact__form reveal" id="contact-form" novalidate>
+          <p class="form__hint">Or drop us a note here:</p>
+          <div class="field"><label for="name">Name</label><input type="text" id="name" name="name" required placeholder="Your name" /></div>
+          <div class="field"><label for="email">Email</label><input type="email" id="email" name="email" required placeholder="you@email.com" /></div>
+          <div class="field"><label for="type">I'm reaching out about</label>
+            <select id="type" name="type">
+              <option value="Booking">Booking / performance</option>
+              <option value="Audition">Auditioning</option>
+              <option value="Collaboration">Collaboration</option>
+              <option value="Other">Something else</option>
+            </select>
+          </div>
+          <div class="field"><label for="message">Message</label><textarea id="message" name="message" rows="4" required placeholder="Tell us a little more…"></textarea></div>
+          <button type="submit" class="btn btn--solid">Send message</button>
+          <p class="form__note" id="form-note" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="#home" class="brand brand--mono footer__brand" aria-label="Supertonic! home">
+        <span class="brand__mark">S!</span><span class="brand__word">Supertonic</span>
+      </a>
+      <a class="footer__ig" href="https://www.instagram.com/scsupertonic/" target="_blank" rel="noopener" aria-label="Instagram @scsupertonic">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.86s0 3.6-.07 4.86c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.9.07s-3.6 0-4.86-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.21 15.6 2.2 15.2 2.2 12s0-3.6.07-4.86c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.46 2.21 8.84 2.2 12 2.2Zm0 10.8A4.94 4.94 0 1 0 7.06 12 4.94 4.94 0 0 0 12 13Zm0-1.8A3.14 3.14 0 1 1 15.14 12 3.14 3.14 0 0 1 12 11.2Z"/></svg>
+        @scsupertonic
+      </a>
+      <p>Santa Clara University · Est. 2007</p>
+      <p class="footer__copy">© <span id="year"></span> Supertonic!</p>
+      <p class="footer__credit">Website design — Ajinkya Ranade × Zaxis Ventures LLC</p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
