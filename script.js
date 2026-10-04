@@ -17,7 +17,7 @@
       bio: "Phoenix, AZ · Economics & Music. She studied classical voice in Vienna — performing in chamber ensembles and interning at the Vienna State Opera — and also sings with Chamber Singers and cantors at Mission Santa Clara." },
     { name: "Lia O'Donovan",    part: 'Soprano', role: 'Music Director', year: "'29", photo: 'assets/members/lia.jpg',
       bio: "Palo Alto, CA · Music & Communications. The group's Music Director — eleven years with the iSing girls' choir and a lifelong theatre kid, thrilled that one Tonics hangout became a full karaoke Hamilton." },
-    { name: 'Grace Anderson',   part: 'Soprano', role: 'Rehearsal Director', year: "'27", photo: 'assets/members/grace.jpg',
+    { name: 'Grace Anderson',   part: 'Soprano', role: 'Rehearsal Director', year: "'27", photo: 'assets/members/grace.jpg', pos: '76% center',
       bio: "Hartland, WI · Mechanical Engineering, Aerospace minor. A Rehearsal Director who's been singing since age three; off-stage she's in boxing and improv, and co-founded SCU's Line Dancing Club." },
     { name: 'Hermione Summers', part: 'Soprano', year: "'28", photo: 'assets/members/hermione.jpg',
       bio: "Psychology, Studio Art minor. A lifelong musical-theatre performer (Gavroche in Les Mis, Little Red in Into the Woods) who loves horseback riding and friendship bracelets." },
@@ -61,7 +61,7 @@
       return `
       <article class="panel reveal" role="listitem" tabindex="0"
                aria-label="${esc(m.name)}, ${esc(m.part)}${m.role ? ', ' + esc(m.role) : ''}"
-               style="background-image:url('${m.photo}')">
+               style="background-image:url('${m.photo}')${m.pos ? ';background-position:' + m.pos : ''}">
         <div class="panel__scrim"></div>
         <div class="panel__label">
           <span class="panel__name">${esc(m.name)}</span>
