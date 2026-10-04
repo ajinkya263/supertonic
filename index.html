@@ -217,6 +217,21 @@
     </div>
   </footer>
 
+  <!-- ===================== PROFILE MODAL ===================== -->
+  <div class="modal" id="profile-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="pm-name">
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__card">
+      <button class="modal__close" type="button" aria-label="Close profile" data-close>&times;</button>
+      <div class="modal__media"><img id="pm-img" src="" alt="" /></div>
+      <div class="modal__body">
+        <span class="modal__badge" id="pm-badge"></span>
+        <h3 class="modal__name" id="pm-name"></h3>
+        <p class="modal__part" id="pm-part"></p>
+        <p class="modal__bio" id="pm-bio"></p>
+      </div>
+    </div>
+  </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="script.js"></script>
