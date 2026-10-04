@@ -76,12 +76,11 @@
       </article>`;
     }).join('');
 
-    wrap.querySelectorAll('.panel').forEach((p) => {
-      p.addEventListener('click', () => {
-        const open = p.classList.contains('is-open');
-        wrap.querySelectorAll('.panel').forEach((x) => x.classList.remove('is-open'));
-        if (!open) p.classList.add('is-open');
-      });
+    // click / Enter opens the full profile modal
+    wrap.querySelectorAll('.panel').forEach((el, i) => {
+      const open = () => openProfile(MEMBERS[i]);
+      el.addEventListener('click', open);
+      el.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
     });
   }
 
@@ -100,6 +99,13 @@
           <p class="alum__bio">${esc(m.bio)}</p>
         </div>
       </article>`).join('');
+
+    // click / Enter opens the full profile modal
+    grid.querySelectorAll('.alum').forEach((el, i) => {
+      const open = () => openProfile(ALUMNI[i]);
+      el.addEventListener('click', open);
+      el.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+    });
   }
 
   /* --------------------------------------------- Render + drive carousel --- */
@@ -322,6 +328,30 @@
       document.addEventListener(ev, tryPlay, { once: true, passive: true }));
   }
 
+  /* --------------------------------------------------- Profile modal ------- */
+  function openProfile(p) {
+    const modal = document.getElementById('profile-modal');
+    if (!modal || !p) return;
+    const img = modal.querySelector('#pm-img');
+    img.src = p.photo; img.alt = p.name; img.style.objectPosition = p.pos || 'center';
+    modal.querySelector('#pm-name').innerHTML = esc(p.name) + (p.year ? ` <em>${esc(p.year)}</em>` : '');
+    modal.querySelector('#pm-part').textContent = p.part || '';
+    const badge = modal.querySelector('#pm-badge');
+    if (p.role) { badge.textContent = p.role; badge.style.display = ''; } else { badge.style.display = 'none'; }
+    modal.querySelector('#pm-bio').textContent = p.bio || '';
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    const c = modal.querySelector('.modal__close'); if (c) c.focus();
+  }
+  function initProfileModal() {
+    const modal = document.getElementById('profile-modal');
+    if (!modal) return;
+    const close = () => { modal.classList.remove('is-open'); modal.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; };
+    modal.addEventListener('click', (e) => { if (e.target.hasAttribute('data-close')) close(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('is-open')) close(); });
+  }
+
   /* -------------------------------------------------------------- BOOT ----- */
   document.addEventListener('DOMContentLoaded', () => {
     renderMembers();
@@ -331,6 +361,7 @@
     initMobileMenu();
     initNotes();
     initVibeVideo();
+    initProfileModal();
     initForm();
     const y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear();
     initAnimations();
