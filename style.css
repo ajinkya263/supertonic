@@ -145,8 +145,15 @@ h1,h2,h3{font-family:var(--font-head);line-height:1.08;margin:0;letter-spacing:-
 @media (hover:none){
   .slide:active img{transform:scale(1.05);}
   .alum:active img{transform:scale(1.05);}
+  .alum:active{transform:scale(0.99);}
+  .panel:active{filter:brightness(1.08);}
   .scard:active{filter:brightness(1.07);}
   .btn:active{filter:brightness(1.06);}
+  /* No hover previews on touch -> a SINGLE tap opens the profile modal
+     (otherwise iOS spends the first tap applying :hover instead of clicking). */
+  .panel__content{opacity:0 !important;transform:none !important;}
+  .panel__label{opacity:1 !important;}
+  .alum__bio{max-height:0 !important;opacity:0 !important;margin-top:0 !important;}
 }
 
 /* ----------------------------------------------------------------- ALUMNI -- */
