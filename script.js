@@ -257,10 +257,20 @@
     gsap.to('.vibe__video', { yPercent: 10, ease: 'none', scrollTrigger: { trigger: '.vibe', start: 'top bottom', end: 'bottom top', scrub: true } });
 
     // members panels + alumni pop
-    gsap.set('.panel', { scale: 0.94 });
-    gsap.to('.panel', { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: 'power3.out', stagger: 0.06, scrollTrigger: { trigger: '#members-accordion', start: 'top 84%' } });
-    gsap.set('.alum', { scale: 0.94 });
-    gsap.to('.alum', { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: 'power3.out', stagger: 0.07, scrollTrigger: { trigger: '#alumni-grid', start: 'top 86%' } });
+    const mobile = window.matchMedia('(max-width: 900px)').matches;
+    if (mobile) {
+      // tall grid on mobile -> reveal each card as it scrolls into view
+      [...document.querySelectorAll('.panel'), ...document.querySelectorAll('.alum')].forEach((el) => {
+        gsap.fromTo(el, { opacity: 0, y: 30, scale: 0.96 },
+          { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: 'power3.out',
+            scrollTrigger: { trigger: el, start: 'top 94%' } });
+      });
+    } else {
+      gsap.set('.panel', { scale: 0.94 });
+      gsap.to('.panel', { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: 'power3.out', stagger: 0.06, scrollTrigger: { trigger: '#members-accordion', start: 'top 84%' } });
+      gsap.set('.alum', { scale: 0.94 });
+      gsap.to('.alum', { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: 'power3.out', stagger: 0.07, scrollTrigger: { trigger: '#alumni-grid', start: 'top 86%' } });
+    }
 
     runCounts(false, gsap);
   }
@@ -293,6 +303,25 @@
     });
   }
 
+  /* ----------------------------------------- Keep the vibe video playing --- */
+  // On mobile, autoplay is often blocked so the <video> shows its poster image
+  // instead of the clip. Force play, retry when it scrolls into view, and on the
+  // first user interaction — so it's always the moving clip, never a still image.
+  function initVibeVideo() {
+    const v = document.querySelector('.vibe__video');
+    if (!v || prefersReduced) return;
+    v.muted = true; v.defaultMuted = true; v.setAttribute('muted', ''); v.playsInline = true;
+    const tryPlay = () => { try { const p = v.play(); if (p && p.catch) p.catch(() => {}); } catch (e) {} };
+    tryPlay();
+    v.addEventListener('loadeddata', tryPlay);
+    v.addEventListener('canplay', tryPlay);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => entries.forEach((e) => { if (e.isIntersecting) tryPlay(); }), { threshold: 0.1 }).observe(v);
+    }
+    ['touchstart', 'pointerdown', 'scroll'].forEach((ev) =>
+      document.addEventListener(ev, tryPlay, { once: true, passive: true }));
+  }
+
   /* -------------------------------------------------------------- BOOT ----- */
   document.addEventListener('DOMContentLoaded', () => {
     renderMembers();
@@ -301,6 +330,7 @@
     initNav();
     initMobileMenu();
     initNotes();
+    initVibeVideo();
     initForm();
     const y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear();
     initAnimations();
