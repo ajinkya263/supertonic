@@ -242,13 +242,19 @@ h1,h2,h3{font-family:var(--font-head);line-height:1.08;margin:0;letter-spacing:-
   .stats{grid-template-columns:repeat(2,1fr);gap:32px 16px;}
   .contact__inner{grid-template-columns:1fr;gap:36px;}
 
-  /* members accordion -> vertical, tap to expand */
-  .accordion{flex-direction:column;height:auto;gap:12px;}
-  .panel{flex:none;height:92px;transition:height .55s var(--ease);}
-  .panel:hover,.panel:focus-visible,.panel.is-open{flex:none;height:380px;}
-  .panel__label{writing-mode:horizontal-tb;transform:none;flex-direction:row;gap:10px;left:22px;right:auto;bottom:auto;top:50%;translate:0 -50%;}
-  .panel:hover .panel__label,.panel.is-open .panel__label{opacity:0;}
-  .panel__content{width:100%;}
+  /* members: 2-col grid of full-photo cards, tap for bio (mobile only) */
+  .accordion{display:grid;grid-template-columns:1fr 1fr;gap:12px;height:auto;padding:40px 20px 0;}
+  .panel{flex:none;height:auto;aspect-ratio:3/4;background-position:center;border-radius:14px;}
+  .panel__scrim{background:linear-gradient(180deg,rgba(10,10,11,0) 42%,rgba(10,10,11,0.9) 100%);}
+  .panel__label{writing-mode:horizontal-tb;transform:none;flex-direction:column;align-items:flex-start;gap:1px;left:13px;right:13px;bottom:12px;top:auto;translate:0 0;opacity:1;}
+  .panel__label .panel__name{font-size:0.95rem;}
+  .panel__label .panel__part{font-size:0.72rem;}
+  .panel__content{position:absolute;inset:0;width:100%;justify-content:flex-end;padding:16px;opacity:0;transform:none;background:linear-gradient(180deg,rgba(10,10,11,0.25),rgba(10,10,11,0.94));}
+  .panel.is-open .panel__content{opacity:1;}
+  .panel.is-open .panel__label{opacity:0;}
+  .panel__content h3{font-size:1.1rem;}
+  .panel__badge{font-size:0.6rem;margin-bottom:8px;}
+  .panel__bio{font-size:0.8rem;max-width:none;}
 }
 @media (max-width:560px){
   .alumni__grid{grid-template-columns:1fr 1fr;gap:12px;}
