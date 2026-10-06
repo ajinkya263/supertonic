@@ -1,9 +1,13 @@
 # Supertonic!
 
+Website: scusupertonic.com
+
 Marketing / portfolio site for **Supertonic!**, Santa Clara University's oldest
 contemporary all-gender a cappella group (est. 2007).
 
 Plain HTML/CSS/JS — no build step. GSAP (via CDN) powers the animations.
+
+
 
 ## Run it locally
 
