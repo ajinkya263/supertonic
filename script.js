@@ -393,21 +393,32 @@
   }
 
   /* ------------------------------------------- Intro splash → nav logo ----- */
-  function initIntro() {
+  // onReveal fires exactly as the logo starts flying, so the rest of the site
+  // animates in while the logo travels to the top-left corner.
+  function initIntro(onReveal) {
+    let revealed = false;
+    const reveal = () => { if (!revealed) { revealed = true; if (onReveal) onReveal(); } };
+    const unlock = () => document.documentElement.classList.remove('intro-lock');
+
     const intro = document.getElementById('intro');
-    if (!intro) return;
-    const logo = document.getElementById('intro-logo');
+    const logo = intro && document.getElementById('intro-logo');
     const navLogo = document.querySelector('.brand--img .brand__png');
-    // Honor reduced-motion (CSS hides it) and bail gracefully if pieces are missing
-    if (prefersReduced || !logo || !navLogo) { intro.remove(); return; }
+    // Honor reduced-motion (CSS hides the splash) and bail gracefully if pieces are missing
+    if (!intro || prefersReduced || !logo || !navLogo) {
+      if (intro) intro.remove();
+      unlock(); reveal(); return;
+    }
 
     document.documentElement.classList.add('intro-lock');
-    const finish = () => { intro.remove(); document.documentElement.classList.remove('intro-lock'); };
+    const finish = () => { intro.remove(); unlock(); };
 
-    // Let the logo finish drawing (gif is ~1.9s), then fly it to the nav logo's spot
+    // Let the logo finish drawing (~1.9s), then fly it to the nav logo's spot
     setTimeout(() => {
       const s = logo.getBoundingClientRect();
       const t = navLogo.getBoundingClientRect();
+      unlock();
+      reveal(); // kick off the page's entrance animations as the flight begins
+
       if (!s.width || !t.width) { intro.classList.add('is-leaving'); setTimeout(finish, 600); return; }
 
       const scale = t.width / s.width;
@@ -433,7 +444,6 @@
 
   /* -------------------------------------------------------------- BOOT ----- */
   document.addEventListener('DOMContentLoaded', () => {
-    initIntro();
     renderMembers();
     renderAlumni();
     initCarousel();
@@ -444,7 +454,8 @@
     initProfileModal();
     initForm();
     const y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear();
-    initAnimations();
     document.body.classList.add('is-ready');
+    // The site's entrance animations run as the intro logo flies into the corner
+    initIntro(initAnimations);
   });
 })();
