@@ -21,7 +21,7 @@
       bio: "Hartland, WI · Mechanical Engineering, Aerospace minor. A Rehearsal Director who's been singing since age three; off-stage she's in boxing and improv, and co-founded SCU's Line Dancing Club." },
     { name: 'Hermione Summers', part: 'Soprano', year: "'28", photo: 'assets/members/hermione.jpg',
       bio: "Psychology, Studio Art minor. A lifelong musical-theatre performer (Gavroche in Les Mis, Little Red in Into the Woods) who loves horseback riding and friendship bracelets." },
-    { name: 'Elise Pinelli',     part: 'Soprano · Alto', year: "'30", photo: 'assets/members/elise.jpg',
+    { name: 'Elise Pinelli',     part: 'Soprano', year: "'30", photo: 'assets/members/elise.jpg',
       bio: "Seattle, WA · Bioengineering. A first-year who's loved singing since she was little — a middle- and high-school choir member whose other passions are running, songwriting, and sewing." },
     { name: 'Chanel Allegakoen',part: 'Alto', role: 'Vice President', year: "'28", photo: 'assets/members/chanel.jpg',
       bio: "San Jose, CA · Marketing, Business Analytics minor. The group's Vice President & Social Chair — music keeps her connected to her late grandmother, a celebrated singer in Malaysia." },
@@ -392,8 +392,48 @@
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('is-open')) close(); });
   }
 
+  /* ------------------------------------------- Intro splash → nav logo ----- */
+  function initIntro() {
+    const intro = document.getElementById('intro');
+    if (!intro) return;
+    const logo = document.getElementById('intro-logo');
+    const navLogo = document.querySelector('.brand--img .brand__png');
+    // Honor reduced-motion (CSS hides it) and bail gracefully if pieces are missing
+    if (prefersReduced || !logo || !navLogo) { intro.remove(); return; }
+
+    document.documentElement.classList.add('intro-lock');
+    const finish = () => { intro.remove(); document.documentElement.classList.remove('intro-lock'); };
+
+    // Let the logo finish drawing (gif is ~1.9s), then fly it to the nav logo's spot
+    setTimeout(() => {
+      const s = logo.getBoundingClientRect();
+      const t = navLogo.getBoundingClientRect();
+      if (!s.width || !t.width) { intro.classList.add('is-leaving'); setTimeout(finish, 600); return; }
+
+      const scale = t.width / s.width;
+      const dx = (t.left + t.width / 2) - (s.left + s.width / 2);
+      const dy = (t.top + t.height / 2) - (s.top + s.height / 2);
+
+      // Freeze the box size and swap to the finished logo so it doesn't redraw mid-flight
+      logo.style.width = s.width + 'px';
+      logo.style.height = s.height + 'px';
+      logo.style.objectFit = 'contain';
+      logo.src = navLogo.getAttribute('src');
+
+      logo.classList.add('is-flying');
+      requestAnimationFrame(() => { logo.style.transform = `translate(${dx}px, ${dy}px) scale(${scale})`; });
+      intro.classList.add('is-leaving');
+
+      let ended = false;
+      const once = () => { if (!ended) { ended = true; finish(); } };
+      logo.addEventListener('transitionend', once, { once: true });
+      setTimeout(once, 1100); // fallback in case transitionend doesn't fire
+    }, 1950);
+  }
+
   /* -------------------------------------------------------------- BOOT ----- */
   document.addEventListener('DOMContentLoaded', () => {
+    initIntro();
     renderMembers();
     renderAlumni();
     initCarousel();
